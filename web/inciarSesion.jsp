@@ -39,7 +39,7 @@
 
     
 <c:if test="${(param.error==1)}">
-    <!-- Seccion de error de inicio de sesión-->
+    <!--Seccion de error de inicio de sesión-->
 </c:if>    
 <div class="container">
     <div class="abs-center mt-5">
