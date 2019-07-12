@@ -39,7 +39,7 @@
 
 <div class="container">
     <div class="abs-center mt-5">
-        <form action="UsuarioServlet?action=insert" method="post" class="border p-3 needs-validation form">
+        <form action="UsuarioServlet?action=registrar" method="post" class="border p-3 needs-validation form">
             <legend class="text-center icon"><i class="fas fa-users-cog"></i></legend>
             <div class="form-group col-md-12">
                 <input type="text" class="form-control" id="name" placeholder="Nombre">
@@ -51,7 +51,7 @@
                 <input type="password" class="form-control" id="password" placeholder="Contraseña">
             </div>
             <div class="form-group col-md-12">
-                <input type="password" class="form-control" id="ConPassword" placeholder="Confirmar Contraseña">
+                <input type="password" class="form-control" id="conPassword" placeholder="Confirmar Contraseña">
             </div>
             <div class="form-group col-md-12 text-center">
                 <button type="button" class="btn btn-outline-secondary">Cancelar</button>

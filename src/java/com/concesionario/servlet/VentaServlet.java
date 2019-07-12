@@ -5,8 +5,8 @@
  */
 package com.concesionario.servlet;
 
-import com.concesionario.ejb.UsuarioFacadeLocal;
-import com.concesionario.entity.Usuario;
+import com.concesionario.ejb.VentaFacadeLocal;
+import com.concesionario.entity.Venta;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.ejb.EJB;
@@ -17,12 +17,12 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author ?
+ * @author jonathans.ramirez
  */
-public class UsuarioServlet extends HttpServlet {
+public class VentaServlet extends HttpServlet {
 
     @EJB
-    private UsuarioFacadeLocal usuarioFacade;
+    private VentaFacadeLocal ventaFacade;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,44 +40,17 @@ public class UsuarioServlet extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             String action = request.getParameter("action");
             String url = "index.jsp";
-            Usuario usuario;
+            Venta venta;
             
-            if(action != null) switch(action){
-                case "login" :
+            if(action != null) switch(action){ 
+                case "registrar":
                     try {
-                        String u = request.getParameter("usuario");
-                        String p = request.getParameter("contrasena");
-                        boolean checkLogin = usuarioFacade.checkLogin(u, p);
-
-                        if(checkLogin) {
-                            request.getSession().setAttribute("login", u);
-                            url = "index.jsp?exito=1";
-                        } else {
-                            url = "index.jsp?error=1";
-                        }
+                        
                     } catch (Exception e) {
-                    }
-                    break;
-                    case "registrar" :
-                    try {
-                        String contraseña = request.getParameter("password");
-                        if(contraseña.equals(request.getParameter("conPassword"))) {
-                            usuario = new Usuario();
-                            usuario.setId(null);
-                            usuario.setNombre(request.getParameter("name"));
-                            usuario.setUsuario(request.getParameter("user"));
-                            usuario.setContrasena(contraseña);
-                            usuarioFacade.create(usuario);
-                            url = "index.jsp?exito=1";
-                        } else {
-                            url = "index.jsp=error=1";
-                        }                                          
-                    } catch (Exception e) {
-                        url = "index.jsp=error=1";
+                        
                     }
                     break;
             }
-            
         }
     }
 

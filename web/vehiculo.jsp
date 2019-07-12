@@ -24,8 +24,8 @@
         table.table td a.delete{
             color: red;
         }
-        table.table td a.edit {
-            color: #FFC107;
+        table.table td a.sell {
+            color: #00e676;
         }
         a:hover {
             color:  #4CAF50 !important;
@@ -66,34 +66,45 @@
                         <th>Imagen</th>
                         <th>Acciones</th>
                     </tr>
-                </thead>
+                </thead>                              
                 <tbody  id="cuerpoTabla">
-                    <tr>
-                        <td>Spark</td>
-                        <td>2012</td>
-                        <td>ACF567</td>
-                        <td>19000000</td>
-                        <td><a title="ver imagen" href="#" ><i class="fas fa-image"></i></a></td>
+                <c:if test="${param.filtered == 1}">
+                    <c:forEach var = "vehiculo" varStatus="status" items="${vehiculo}">
+                        <td<c:out value="${vehiculo.linea}"/>
+                        <td<c:out value="${vehiculo.modelo}"/>
+                        <td<c:out value="${vehiculo.placa}"/>
+                        <td<c:out value="${vehiculo.precio}"/>                        
+                        <td><a title="ver imagen" href="VehiculoServlet?action=verFoto" ><i class="fas fa-image"></i></a></td>
                         <td>
-                            <a class="edit" title="Edit" data-toggle="tooltip"><i class="fas fa-edit"></i></a>
-                            <a class="delete" title="Delete" data-toggle="tooltip"><i class="fas fa-trash"></i></a>
+                            <a class="sell" title="Sell" data-toggle="tooltip" href="VehiculoServlet?action=vender&id=${vehiculo.pĺaca}"><i class="fas fa-dollar-sign"></i></a>
+                            <a class="delete" title="Delete" data-toggle="tooltip" href="VehiculoServlet?action=editar&id=${vehiculo.pĺaca}"><i class="fas fa-trash"></i></a>
                         </td>
-                    </tr>
-                    <tr>
-                        <td>Spark gt</td>
-                        <td>2019</td>
-                        <td>ACG896</td>
-                        <td>45000000</td>
-                        <td><a title="ver imagen" href="#" ><i class="fas fa-image"></i></a></td>
-                        <td>
-                            <a class="edit" title="Edit" data-toggle="tooltip"><i class="fas fa-edit"></i></a>
-                            <a class="delete" title="Delete" data-toggle="tooltip"><i class="fas fa-trash"></i></a>
-                        </td>
-                    </tr>    
+                    </c:forEach>
+                </c:if> 
+                <c:if test="${param.filtered == 2 || param.filtered == null}">
+                    <c:forEach var = "vehiculo" varStatus="status" items="${vehiculos}">
+                        <tr>
+                            <td<c:out value="${vehiculo.linea}"/>
+                            <td<c:out value="${vehiculo.modelo}"/>
+                            <td<c:out value="${vehiculo.placa}"/>
+                            <td<c:out value="${vehiculo.precio}"/>                        
+                            <td><a title="ver imagen" href="VehiculoServlet?action=verFoto" ><i class="fas fa-image"></i></a></td>
+                            <td>
+                                <a class="sell" title="Sell" data-toggle="tooltip" href="VehiculoServlet?action=vender&id=${vehiculo.pĺaca}"><i class="fas fa-dollar-sign"></i></a>
+                                <a class="delete" title="Delete" data-toggle="tooltip" href="VehiculoServlet?action=editar&id=${vehiculo.pĺaca}"><i class="fas fa-trash"></i></a>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </c:if> 
+                <c:if test="${param.filtered == 3}">
+                    <center><h1>No se encontraron registros</h1></center>
+                </c:if>  
                 </tbody>
             </table>
         </div>
     </div>
+    
+ 
 
     
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

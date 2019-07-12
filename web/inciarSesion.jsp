@@ -39,8 +39,11 @@
 
     
 <c:if test="${(param.error==1)}">
-    <!--Seccion de error de inicio de sesión-->
-</c:if>    
+    <center><h1>No se encontraron registros</h1></center>
+</c:if>  
+<c:if test="${(param.exito==1)}">
+    <center><h1>Bienvenido</h1></center>
+</c:if> 
 <div class="container">
     <div class="abs-center mt-5">
         <form action="UsuarioServlet?action=login" method="post" class="border p-3 needs-validation form">
