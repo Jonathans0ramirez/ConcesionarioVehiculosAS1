@@ -76,8 +76,8 @@
                         <td<c:out value="${vehiculo.precio}"/>                        
                         <td><a title="ver imagen" href="VehiculoServlet?action=verFoto" ><i class="fas fa-image"></i></a></td>
                         <td>
-                            <a class="sell" title="Sell" data-toggle="tooltip" href="VehiculoServlet?action=toVenta&id=${vehiculo.pĺaca}"><i class="fas fa-dollar-sign"></i></a>
-                            <a class="delete" title="Delete" data-toggle="tooltip" href="VehiculoServlet?action=eliminar&id=${vehiculo.pĺaca}"><i class="fas fa-trash"></i></a>
+                            <a class="sell" title="Sell" data-toggle="tooltip" href="VehiculoServlet?action=toVenta&id=${vehiculo.placa}"><i class="fas fa-dollar-sign"></i></a>
+                            <a class="delete" title="Delete" data-toggle="tooltip" href="VehiculoServlet?action=eliminar&id=${vehiculo.placa}"><i class="fas fa-trash"></i></a>
                         </td>
                     </c:forEach>
                 </c:if> 
@@ -90,8 +90,8 @@
                             <td<c:out value="${vehiculo.precio}"/>                        
                             <td><a title="ver imagen" href="VehiculoServlet?action=verFoto" ><i class="fas fa-image"></i></a></td>
                             <td>
-                                <a class="sell" title="Sell" data-toggle="tooltip" href="VehiculoServlet?action=toVenta&id=${vehiculo.pĺaca}"><i class="fas fa-dollar-sign"></i></a>
-                                <a class="delete" title="Delete" data-toggle="tooltip" href="VehiculoServlet?action=eliminar&id=${vehiculo.pĺaca}"><i class="fas fa-trash"></i></a>
+                                <a class="sell" title="Sell" data-toggle="tooltip" href="VehiculoServlet?action=toVenta&id=${vehiculo.placa}"><i class="fas fa-dollar-sign"></i></a>
+                                <a class="delete" title="Delete" data-toggle="tooltip" href="VehiculoServlet?action=eliminar&id=${vehiculo.placa}"><i class="fas fa-trash"></i></a>
                             </td>
                         </tr>
                     </c:forEach>

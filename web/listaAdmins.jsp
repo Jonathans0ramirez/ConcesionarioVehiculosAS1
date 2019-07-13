@@ -76,7 +76,7 @@
                         <td<c:out value="${cliente.correo}"/>                        
                         <td<c:out value="${cliente.direccion}"/>                         
                         <td>                            
-                            <a class="delete" title="Delete" data-toggle="tooltip" href="ClienteServlet?action=eliminar&id=${vehiculo.pĺaca}"><i class="fas fa-trash"></i></a>
+                            <a class="delete" title="Delete" data-toggle="tooltip" href="ClienteServlet?action=eliminar&id=${vehiculo.placa}"><i class="fas fa-trash"></i></a>
                         </td>
                     </c:forEach>
                 </c:if> 
@@ -89,7 +89,7 @@
                             <td<c:out value="${cliente.correo}"/>                        
                             <td<c:out value="${cliente.direccion}"/>                         
                             <td>                            
-                                <a class="delete" title="Delete" data-toggle="tooltip" href="ClienteServlet?action=eliminar&id=${vehiculo.pĺaca}"><i class="fas fa-trash"></i></a>
+                                <a class="delete" title="Delete" data-toggle="tooltip" href="ClienteServlet?action=eliminar&id=${vehiculo.placa}"><i class="fas fa-trash"></i></a>
                             </td>
                         </tr>
                     </c:forEach>
