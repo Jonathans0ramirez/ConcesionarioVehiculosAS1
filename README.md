@@ -25,7 +25,6 @@
   
   CREATE TABLE Vehiculo(
   Placa VARCHAR(10) NOT NULL,
-  #Marca VARCHAR(50) NOT NULL,
   Linea VARCHAR(50) NOT NULL,
   Modelo VARCHAR(50) NOT NULL,
   Precio int NOT NULL,
