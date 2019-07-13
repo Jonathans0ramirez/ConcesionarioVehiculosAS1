@@ -39,7 +39,7 @@
 
 <div class="container">
     <div class="abs-center mt-5">
-        <form action="ClienteServlet?action=insert" method="post" class="border p-3 needs-validation form">
+        <form action="ClienteServlet?action=registrar" method="post" class="border p-3 needs-validation form">
             <legend class="text-center icon"><i class="fas fa-user"></i></legend>
             <div class="form-group col-md-12">
                 <input type="text" class="form-control" id="name" placeholder="Nombre">
@@ -57,7 +57,7 @@
                 <input type="text" class="form-control" id="direccion" placeholder="Dirección">
             </div>
             <div class="form-group col-md-12 text-center">
-                <button type="button" class="btn btn-outline-secondary">Cancelar</button>
+                <button type="reset" value="reset" class="btn btn-outline-secondary">Vaciar</button>
                 <button type="submit" class="btn btn-outline-success">Registrar</button>
             </div>
         </form>

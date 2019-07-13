@@ -9,6 +9,7 @@ import com.concesionario.ejb.UsuarioFacadeLocal;
 import com.concesionario.entity.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -41,43 +42,57 @@ public class UsuarioServlet extends HttpServlet {
             String action = request.getParameter("action");
             String url = "index.jsp";
             Usuario usuario;
-            
-            if(action != null) switch(action){
-                case "login" :
-                    try {
-                        String u = request.getParameter("usuario");
-                        String p = request.getParameter("contrasena");
-                        boolean checkLogin = usuarioFacade.checkLogin(u, p);
 
-                        if(checkLogin) {
-                            request.getSession().setAttribute("login", u);
-                            url = "index.jsp?exito=1";
-                        } else {
-                            url = "index.jsp?error=1";
+            if (action != null) {
+                switch (action) {
+                    case "login":
+                        try {
+                            String u = request.getParameter("usuario");
+                            String p = request.getParameter("contrasena");
+                            boolean checkLogin = usuarioFacade.checkLogin(u, p);
+
+                            if (checkLogin) {
+                                request.getSession().setAttribute("login", u);
+                                url = "index.jsp?exito=1";
+                            } else {
+                                url = "index.jsp?error=1";
+                            }
+                        } catch (Exception e) {
                         }
-                    } catch (Exception e) {
-                    }
-                    break;
-                    case "registrar" :
-                    try {
-                        String contraseña = request.getParameter("password");
-                        if(contraseña.equals(request.getParameter("conPassword"))) {
-                            usuario = new Usuario();
-                            usuario.setId(null);
-                            usuario.setNombre(request.getParameter("name"));
-                            usuario.setUsuario(request.getParameter("user"));
-                            usuario.setContrasena(contraseña);
-                            usuarioFacade.create(usuario);
-                            url = "index.jsp?exito=1";
-                        } else {
+                        break;
+                    case "registrar":
+                        try {
+                            String contraseña = request.getParameter("password");
+                            if (contraseña.equals(request.getParameter("conPassword"))) {
+                                usuario = new Usuario();
+                                usuario.setId(null);
+                                usuario.setNombre(request.getParameter("name"));
+                                usuario.setUsuario(request.getParameter("user"));
+                                usuario.setContrasena(contraseña);
+                                usuarioFacade.create(usuario);
+                                url = "index.jsp?exito=1";
+                            } else {
+                                url = "index.jsp=error=1";
+                            }
+                        } catch (Exception e) {
                             url = "index.jsp=error=1";
-                        }                                          
-                    } catch (Exception e) {
-                        url = "index.jsp=error=1";
-                    }
-                    break;
+                        }
+                        break;
+                    case "listar":
+                        List<Usuario> findAll = usuarioFacade.findAll();
+                        request.getSession().setAttribute("admin", findAll);
+                        url = "listaAdmins.jsp";
+                        break;
+                    case "toRegistrar":
+                        try {
+                            url = "registrarAdmin.jsp";
+                        } catch (Exception e) {
+                            url = "index.jsp=error=2";
+                        }
+                        break;
+                }
             }
-            
+            response.sendRedirect(url);
         }
     }
 

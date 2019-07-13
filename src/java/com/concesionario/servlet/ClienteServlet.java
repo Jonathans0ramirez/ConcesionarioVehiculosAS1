@@ -9,6 +9,7 @@ import com.concesionario.ejb.ClienteFacadeLocal;
 import com.concesionario.entity.Cliente;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -42,27 +43,38 @@ public class ClienteServlet extends HttpServlet {
             String url = "index.jsp";
             Cliente cliente;
             
-            if(action != null) switch(action){                
-                    case "registrar" :
-                    try {
-                        String contraseña = request.getParameter("password");
-                        if(contraseña.equals(request.getParameter("conPassword"))) {
-                            cliente = new Cliente();
-                            cliente.setCedula(request.getParameter("cedula"));
-                            cliente.setNombre(request.getParameter("nombre"));
-                            cliente.setTelefono(request.getParameter("telefono"));
-                            cliente.setCorreo(request.getParameter("correo"));
-                            cliente.setDireccion(request.getParameter("direccion"));
-                            clienteFacade.create(cliente);
-                            url = "index.jsp?exito=2";
-                        } else {
+            if (action != null) {
+                switch (action) {
+                    case "registrar":
+                        try {
+                            String contraseña = request.getParameter("password");
+                            if (contraseña.equals(request.getParameter("conPassword"))) {
+                                cliente = new Cliente();
+                                cliente.setCedula(request.getParameter("cedula"));
+                                cliente.setNombre(request.getParameter("nombre"));
+                                cliente.setTelefono(request.getParameter("telefono"));
+                                cliente.setCorreo(request.getParameter("correo"));
+                                cliente.setDireccion(request.getParameter("direccion"));
+                                clienteFacade.create(cliente);
+                                url = "index.jsp?exito=2";
+                            } else {
+                                url = "index.jsp=error=2";
+                            }
+                        } catch (Exception e) {
                             url = "index.jsp=error=2";
-                        }                                          
-                    } catch (Exception e) {
-                        url = "index.jsp=error=2";
-                    }
-                    break;
+                        }
+                        break;
+                    case "toRegistrar":
+                        url = "registrarCliente.jsp";
+                        break;
+                    case "listar":
+                        List<Cliente> findAll = clienteFacade.findAll();
+                        request.getSession().setAttribute("cliente", findAll);
+                        url = "listaClientes.jsp";
+                        break;
+                }
             }
+            response.sendRedirect(url);
         }
     }
 

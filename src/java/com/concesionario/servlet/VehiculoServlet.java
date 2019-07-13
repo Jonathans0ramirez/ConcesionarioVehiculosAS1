@@ -5,7 +5,6 @@
  */
 package com.concesionario.servlet;
 
-import com.concesionario.ejb.ClienteFacadeLocal;
 import com.concesionario.ejb.VehiculoFacadeLocal;
 import com.concesionario.entity.Vehiculo;
 import java.io.IOException;
@@ -23,9 +22,6 @@ import javax.servlet.http.HttpServletResponse;
  * @author ?
  */
 public class VehiculoServlet extends HttpServlet {
-
-    @EJB
-    private ClienteFacadeLocal clienteFacade;
 
     @EJB
     private VehiculoFacadeLocal vehiculoFacade;
@@ -46,51 +42,52 @@ public class VehiculoServlet extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             String action = request.getParameter("action");
             String url = "index.jsp";
-            Vehiculo v; 
-            
-            if(action != null) switch(action){ 
-                    
-                case "buscarPorMatricula" :
-                    try {
-                        String param = request.getParameter("matricula");
-                        v = vehiculoFacade.find(Integer.parseInt(param));
+            Vehiculo v;
 
-                        if (v == null){
-                          url = "vehiculo.jsp?filtered=3";
-                        } else {
-                            List<Vehiculo> lista = new ArrayList<>();
-                            lista.add(v);
+            if (action != null) {
+                switch (action) {
 
-                            request.getSession().setAttribute("vehiculo", lista);
-                            url = "vehiculo.jsp?filtered=1";
+                    case "buscarPorMatricula":
+                        try {
+                            String param = request.getParameter("matricula");
+                            v = vehiculoFacade.find(Integer.parseInt(param));
+
+                            if (v == null) {
+                                url = "listarVehiculos.jsp?filtered=3";
+                            } else {
+                                List<Vehiculo> lista = new ArrayList<>();
+                                lista.add(v);
+
+                                request.getSession().setAttribute("vehiculo", lista);
+                                url = "listaVehiculos.jsp?filtered=1";
+                            }
+                        } catch (Exception e) {
+                            url = "listaVehiculos.jsp?filtered=2";
                         }
-                    } catch (Exception e){
-                        url = "vehiculo.jsp?filtered=2";
-                    }
-                    break;
-                case "list":
-                    List<Vehiculo> findAll = vehiculoFacade.findAll();
-                    request.getSession().setAttribute("vehiculos", findAll);
-                    url = "listaVehiculos.jsp";
-                    break;
-                case "vender" :
-                    try {
-                        String param = request.getParameter("matricula");
-                        //c = clienteFacade
-                        
-                    } catch (Exception e) {
-                    }
-                    break;
-                case "eliminar" :
-                    try {
-                        String id = request.getParameter("id");
-                        v = vehiculoFacade.find(Integer.parseInt(id));
-                        vehiculoFacade.remove(v);
-                        
-                    } catch (Exception e) {
-                    }
+                        break;
+                    case "listar":
+                        List<Vehiculo> findAll = vehiculoFacade.findAll();
+                        request.getSession().setAttribute("vehiculos", findAll);
+                        url = "listaVehiculos.jsp";
+                        break;
+                    case "toVenta":
+                        url = "registrarVenta.jsp";
+                        break;
+                    case "toRegistrar":
+                        url = "registrarVehiculo.jsp";
+                        break;
+
+                    case "eliminar":
+                        try {
+                            String id = request.getParameter("id");
+                            v = vehiculoFacade.find(Integer.parseInt(id));
+                            vehiculoFacade.remove(v);
+
+                        } catch (Exception e) {
+                        }
+                }
             }
-              
+            response.sendRedirect(url);
         }
     }
 

@@ -54,7 +54,7 @@
                 <input type="password" class="form-control" id="conPassword" placeholder="Confirmar Contraseña">
             </div>
             <div class="form-group col-md-12 text-center">
-                <button type="button" class="btn btn-outline-secondary">Cancelar</button>
+                <button type="reset" value="reset" class="btn btn-outline-secondary">Vaciar</button>
                 <button type="submit" class="btn btn-outline-success">Registrar</button>
             </div>
         </form>

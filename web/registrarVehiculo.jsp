@@ -69,7 +69,7 @@
 
 <div class="container">
     <div class="abs-center mt-5">
-        <form action="VehiculoServlet?action=insert" method="post" class="border p-3 needs-validation form">
+        <form action="VehiculoServlet?action=registrar" method="post" class="border p-3 needs-validation form">
             <legend class="text-center icon"><i class="fas fa-car"></i></legend>
             <div class="form-group col-md-12">
                 <input type="text" class="form-control" id="linea" placeholder="Linea">
@@ -88,7 +88,7 @@
                 <label class="custom-file-label text-truncate" for="customFile">Seleccionar Imagen...</label>
             </div>
             <div class="form-group col-md-12 text-center mt-4">
-                <button type="button" class="btn btn-outline-secondary">Cancelar</button>
+                <button type="reset" value="reset" class="btn btn-outline-secondary">Vaciar</button>
                 <button type="submit" class="btn btn-outline-success">Registrar vehículo</button>
             </div>
         </form>

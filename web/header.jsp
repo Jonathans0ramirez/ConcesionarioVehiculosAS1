@@ -15,24 +15,30 @@
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="VehiculoServlet?action=list">Vehículos<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="VehiculoServlet?action=listar">Vehículos<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="VentasServlet?action=list">Historial de ventas</a>
+                        <a class="nav-link" href="VentaServlet?action=listar">Historial de ventas</a>
+                    </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="ClienteServlet?action=listar">Lista de Clientes</a>
+                    </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="UsuarioServlet?action=listar">Lista de administradores</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" 
                         role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Registrar</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="VehiculoServlet?action=registrar">Registrar vehículo</a>
-                            <a class="dropdown-item" href="ClienteServlet?action=registrar">Registrar Cliente</a>
-                            <a class="dropdown-item" href="UsuarioServlet?action=registrar">Registrar Administrador</a>
+                            <a class="dropdown-item" href="VehiculoServlet?action=toRegistrar">Registrar vehículo</a>
+                            <a class="dropdown-item" href="ClienteServlet?action=toRegistrar">Registrar Cliente</a>
+                            <a class="dropdown-item" href="UsuarioServlet?action=toRegistrar">Registrar Administrador</a>
                         </div>
                     </li>
                 </ul>
                 
                 <c:if test="${param.success == 1}">                 
-                    <a href="registarUsuario.jsp" class="nav-link" id="Conectado" style="color: #9A9DA0">Desconectarse</a>
+                    <a href="registrarAdmin.jsp" class="nav-link" id="Conectado" style="color: #9A9DA0">Registrar</a>
                 </c:if>
                 <c:if test="${param.success == 2}">
                     <a href="UsuarioServlet?action=desconectar" class="nav-link" id="Conectado" style="color: #9A9DA0">Desconectarse</a>

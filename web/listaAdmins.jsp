@@ -44,9 +44,9 @@
         <div class="table-wrapper table-responsive-md">
             <div class="table-title">
                 <div class="row">
-                    <div class="col-md-4"><h3>Lista <b>Vehículos</b></h3></div>
+                    <div class="col-md-4"><h3>Lista <b>Clientes</b></h3></div>
                     <div class="col-md-4">
-                        <button type="button" class="btn btn-info add-new" style="background-color: #4CAF50"><i class="fa fa-plus"></i> Add New</button>
+                        <button type="button" class="btn btn-info add-new" href="ClienteServlet?action=toRegistrar" style="background-color: #4CAF50"><i class="fa fa-plus"></i> Añadir nuevo</button>
                     </div>
                     <div class="col-md-4">
                         <form class="form-inline">
@@ -59,39 +59,37 @@
             <table class="table table-bordered text-center mt-2">
                 <thead>
                     <tr>
-                        <th>Línea</th>
-                        <th>Modelo</th>
-                        <th>Placa</th>
-                        <th>Precio</th>
-                        <th>Imagen</th>
+                        <th>Cédula</th>
+                        <th>Nombre</th>
+                        <th>Télefono</th>
+                        <th>Correo</th>
+                        <th>Dirección</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>                              
                 <tbody  id="cuerpoTabla">
                 <c:if test="${param.filtered == 1}">
-                    <c:forEach var = "vehiculo" varStatus="status" items="${vehiculo}">
-                        <td<c:out value="${vehiculo.linea}"/>
-                        <td<c:out value="${vehiculo.modelo}"/>
-                        <td<c:out value="${vehiculo.placa}"/>
-                        <td<c:out value="${vehiculo.precio}"/>                        
-                        <td><a title="ver imagen" href="VehiculoServlet?action=verFoto" ><i class="fas fa-image"></i></a></td>
-                        <td>
-                            <a class="sell" title="Sell" data-toggle="tooltip" href="VehiculoServlet?action=vender&id=${vehiculo.pĺaca}"><i class="fas fa-dollar-sign"></i></a>
-                            <a class="delete" title="Delete" data-toggle="tooltip" href="VehiculoServlet?action=editar&id=${vehiculo.pĺaca}"><i class="fas fa-trash"></i></a>
+                    <c:forEach var = "cliente" varStatus="status" items="${cliente}">
+                        <td<c:out value="${cliente.cedula}"/>
+                        <td<c:out value="${cliente.nombre}"/>
+                        <td<c:out value="${cliente.telefono}"/>
+                        <td<c:out value="${cliente.correo}"/>                        
+                        <td<c:out value="${cliente.direccion}"/>                         
+                        <td>                            
+                            <a class="delete" title="Delete" data-toggle="tooltip" href="ClienteServlet?action=eliminar&id=${vehiculo.pĺaca}"><i class="fas fa-trash"></i></a>
                         </td>
                     </c:forEach>
                 </c:if> 
                 <c:if test="${param.filtered == 2 || param.filtered == null}">
-                    <c:forEach var = "vehiculo" varStatus="status" items="${vehiculos}">
+                    <c:forEach var = "cliente" varStatus="status" items="${clientes}">
                         <tr>
-                            <td<c:out value="${vehiculo.linea}"/>
-                            <td<c:out value="${vehiculo.modelo}"/>
-                            <td<c:out value="${vehiculo.placa}"/>
-                            <td<c:out value="${vehiculo.precio}"/>                        
-                            <td><a title="ver imagen" href="VehiculoServlet?action=verFoto" ><i class="fas fa-image"></i></a></td>
-                            <td>
-                                <a class="sell" title="Sell" data-toggle="tooltip" href="VehiculoServlet?action=vender&id=${vehiculo.pĺaca}"><i class="fas fa-dollar-sign"></i></a>
-                                <a class="delete" title="Delete" data-toggle="tooltip" href="VehiculoServlet?action=editar&id=${vehiculo.pĺaca}"><i class="fas fa-trash"></i></a>
+                            <td<c:out value="${cliente.cedula}"/>
+                            <td<c:out value="${cliente.nombre}"/>
+                            <td<c:out value="${cliente.telefono}"/>
+                            <td<c:out value="${cliente.correo}"/>                        
+                            <td<c:out value="${cliente.direccion}"/>                         
+                            <td>                            
+                                <a class="delete" title="Delete" data-toggle="tooltip" href="ClienteServlet?action=eliminar&id=${vehiculo.pĺaca}"><i class="fas fa-trash"></i></a>
                             </td>
                         </tr>
                     </c:forEach>

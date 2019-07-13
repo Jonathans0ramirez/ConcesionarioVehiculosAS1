@@ -9,6 +9,7 @@ import com.concesionario.ejb.VentaFacadeLocal;
 import com.concesionario.entity.Venta;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -50,7 +51,16 @@ public class VentaServlet extends HttpServlet {
                         
                     }
                     break;
+                case "toRegistrar" :
+                    url = "registrarVenta.jsp";                   
+                    break;
+                case "listar":
+                    List<Venta> findAll = ventaFacade.findAll();
+                    request.getSession().setAttribute("venta", findAll);
+                    url = "listaVentas.jsp";
+                    break;
             }
+            response.sendRedirect(url);
         }
     }
 
