@@ -1,44 +1,44 @@
 # ConcesionarioVehiculosAS1
 
-# Script 
+# SQL Scripts
 
   CREATE DATABASE concesionariodb;
   
   use concesionariodb;
   
   CREATE TABLE Usuario(
-  Id int NOT NULL AUTO_INCREMENT,
-  Nombre VARCHAR(50) NOT NULL,
-  Usuario VARCHAR(20) NOT NULL,
-  Contrasena VARCHAR(20) NOT NULL,
-  PRIMARY KEY(Id)
+      Id int NOT NULL AUTO_INCREMENT,
+      Nombre VARCHAR(50) NOT NULL,
+      Usuario VARCHAR(20) NOT NULL,
+      Contrasena VARCHAR(20) NOT NULL,
+      PRIMARY KEY(Id)
   );
   
   CREATE TABLE Cliente(
-  Cedula VARCHAR(20) NOT NULL,
-  Nombre VARCHAR(50) NOT NULL,
-  Telefono VARCHAR(10) NOT NULL,
-  Correo VARCHAR(50) NOT NULL,
-  Direccion VARCHAR(50) NOT NULL,
-  PRIMARY KEY(Cedula)
+      Cedula VARCHAR(20) NOT NULL,
+      Nombre VARCHAR(50) NOT NULL,
+      Telefono VARCHAR(10) NOT NULL,
+      Correo VARCHAR(50) NOT NULL,
+      Direccion VARCHAR(50) NOT NULL,
+      PRIMARY KEY(Cedula)
   );
   
   CREATE TABLE Vehiculo(
-  Placa VARCHAR(10) NOT NULL,
-  Linea VARCHAR(50) NOT NULL,
-  Modelo VARCHAR(50) NOT NULL,
-  Precio int NOT NULL,
-  Foto BLOB,
-  PRIMARY KEY(Placa)
+      Placa VARCHAR(10) NOT NULL,
+      Linea VARCHAR(50) NOT NULL,
+      Modelo VARCHAR(50) NOT NULL,
+      Precio int NOT NULL,
+      Foto BLOB,
+      PRIMARY KEY(Placa)
   );
   
   CREATE TABLE Venta (
-  Id int NOT NULL AUTO_INCREMENT,
-  Placa VARCHAR(10) NOT NULL,
-  Cedula VARCHAR(20) NOT NULL,
-  FOREIGN KEY (Cedula) REFERENCES Cliente(Cedula),
-  FOREIGN KEY (Placa) REFERENCES Vehiculo(Placa),
-  PRIMARY KEY(Id)
+      Id int NOT NULL AUTO_INCREMENT,
+      Placa VARCHAR(10) NOT NULL,
+      Cedula VARCHAR(20) NOT NULL,
+      FOREIGN KEY (Cedula) REFERENCES Cliente(Cedula),
+      FOREIGN KEY (Placa) REFERENCES Vehiculo(Placa),
+      PRIMARY KEY(Id)
   );
   
   #Verificar las tablas creadas
