@@ -46,7 +46,7 @@
                 <div class="row">
                     <div class="col-md-4"><h3>Lista <b>Vehículos</b></h3></div>
                     <div class="col-md-4">
-                        <button type="button" class="btn btn-info add-new" style="background-color: #4CAF50"><i class="fa fa-plus"></i> Add New</button>
+                        <button type="button" class="btn btn-info add-new" onclick="location.href='VehiculoServlet?action=toRegistrar'" style="background-color: #4CAF50"><i class="fa fa-plus"></i> Añadir Nuevo</button>
                     </div>
                     <div class="col-md-4">
                         <form class="form-inline">
@@ -70,28 +70,28 @@
                 <tbody  id="cuerpoTabla">
                 <c:if test="${param.filtered == 1}">
                     <c:forEach var = "vehiculo" varStatus="status" items="${vehiculo}">
-                        <td<c:out value="${vehiculo.linea}"/>
-                        <td<c:out value="${vehiculo.modelo}"/>
-                        <td<c:out value="${vehiculo.placa}"/>
-                        <td<c:out value="${vehiculo.precio}"/>                        
+                        <td><c:out value="${vehiculo.linea}"/></td>
+                        <td><c:out value="${vehiculo.modelo}"/></td>
+                        <td><c:out value="${vehiculo.placa}"/></td>
+                        <td><c:out value="${vehiculo.precio}"/></td>                        
                         <td><a title="ver imagen" href="VehiculoServlet?action=verFoto" ><i class="fas fa-image"></i></a></td>
                         <td>
-                            <a class="sell" title="Sell" data-toggle="tooltip" href="VehiculoServlet?action=toVenta&id=${vehiculo.placa}"><i class="fas fa-dollar-sign"></i></a>
-                            <a class="delete" title="Delete" data-toggle="tooltip" href="VehiculoServlet?action=eliminar&id=${vehiculo.placa}"><i class="fas fa-trash"></i></a>
+                            <a class="sell" title="Sell" data-toggle="tooltip" href="VehiculoServlet?action=toVenta&placa=${vehiculo.placa}"><i class="fas fa-dollar-sign"></i></a>
+                            <a class="delete" title="Delete" data-toggle="tooltip" href="VehiculoServlet?action=eliminar&placa=${vehiculo.placa}"><i class="fas fa-trash"></i></a>
                         </td>
                     </c:forEach>
                 </c:if> 
                 <c:if test="${param.filtered == 2 || param.filtered == null}">
                     <c:forEach var = "vehiculo" varStatus="status" items="${vehiculos}">
                         <tr>
-                            <td<c:out value="${vehiculo.linea}"/>
-                            <td<c:out value="${vehiculo.modelo}"/>
-                            <td<c:out value="${vehiculo.placa}"/>
-                            <td<c:out value="${vehiculo.precio}"/>                        
+                            <td><c:out value="${vehiculo.linea}"/></td>
+                            <td><c:out value="${vehiculo.modelo}"/></td>
+                            <td><c:out value="${vehiculo.placa}"/></td>
+                            <td><c:out value="${vehiculo.precio}"/></td>                        
                             <td><a title="ver imagen" href="VehiculoServlet?action=verFoto" ><i class="fas fa-image"></i></a></td>
                             <td>
-                                <a class="sell" title="Sell" data-toggle="tooltip" href="VehiculoServlet?action=toVenta&id=${vehiculo.placa}"><i class="fas fa-dollar-sign"></i></a>
-                                <a class="delete" title="Delete" data-toggle="tooltip" href="VehiculoServlet?action=eliminar&id=${vehiculo.placa}"><i class="fas fa-trash"></i></a>
+                                <a class="sell" title="Sell" data-toggle="tooltip" href="VehiculoServlet?action=toVenta&placa=${vehiculo.placa}&linea=${vehiculo.linea}&modelo=${vehiculo.modelo}"><i class="fas fa-dollar-sign"></i></a>
+                                <a class="delete" title="Delete" data-toggle="tooltip" href="VehiculoServlet?action=eliminar&placa=${vehiculo.placa}"><i class="fas fa-trash"></i></a>
                             </td>
                         </tr>
                     </c:forEach>

@@ -53,9 +53,9 @@ public class UsuarioServlet extends HttpServlet {
 
                             if (checkLogin) {
                                 request.getSession().setAttribute("login", u);
-                                url = "index.jsp?exito=1";
+                                url = "iniciarSesion.jsp?exito=1";
                             } else {
-                                url = "index.jsp?error=1";
+                                url = "iniciarSesion.jsp?error=1";
                             }
                         } catch (Exception e) {
                         }
@@ -70,17 +70,17 @@ public class UsuarioServlet extends HttpServlet {
                                 usuario.setUsuario(request.getParameter("user"));
                                 usuario.setContrasena(contraseña);
                                 usuarioFacade.create(usuario);
-                                url = "index.jsp?exito=1";
+                                url = "index.jsp?exitoRegistrar=1";
                             } else {
-                                url = "index.jsp=error=1";
+                                url = "index.jsp=errorRegistrar=1";
                             }
                         } catch (Exception e) {
-                            url = "index.jsp=error=1";
+                            url = "index.jsp=errorRegistrar=1";
                         }
                         break;
                     case "listar":
                         List<Usuario> findAll = usuarioFacade.findAll();
-                        request.getSession().setAttribute("admin", findAll);
+                        request.getSession().setAttribute("admins", findAll);
                         url = "listaAdmins.jsp";
                         break;
                     case "toRegistrar":
@@ -89,6 +89,19 @@ public class UsuarioServlet extends HttpServlet {
                         } catch (Exception e) {
                             url = "index.jsp=error=2";
                         }
+                        break;
+                    case "eliminar":
+                        try {
+                            String id = request.getParameter("id");
+                            usuario = usuarioFacade.find(Integer.parseInt(id));
+                            usuarioFacade.remove(usuario);
+                            url = "index.jsp?exitoEliminar=1";
+
+                        } catch (Exception e) {
+                            url = "index.jsp?errorEliminar=1";
+                        }
+                        break;
+                    default:
                         break;
                 }
             }

@@ -72,23 +72,23 @@
         <form action="VehiculoServlet?action=registrar" method="post" class="border p-3 needs-validation form">
             <legend class="text-center icon"><i class="fas fa-car"></i></legend>
             <div class="form-group col-md-12">
-                <input type="text" class="form-control" id="linea" placeholder="Linea">
+                <input type="text" class="form-control" name="linea" placeholder="Linea" required>
             </div>
             <div class="form-group col-md-12">
-                <input type="text" class="form-control" id="modelo" placeholder="Modelo">
+                <input type="text" class="form-control" name="modelo" placeholder="Modelo" required>
             </div>
             <div class="form-group col-md-12">
-                <input type="text" class="form-control" id="placa" placeholder="Placa">
+                <input type="text" class="form-control" name="placa" placeholder="Placa" required> 
             </div>
             <div class="form-group col-md-12">
-                <input type="text" class="form-control" id="precio" placeholder="Precio">
+                <input type="text" class="form-control" name="precio" placeholder="Precio" required>
             </div>
             <div class="custom-file col-md-8 ml-3">
-                <input type="file" class="custom-file-input" id="customFile" lang="es">
+                <input type="file" class="custom-file-input" id="customFile" name="foto" lang="es">
                 <label class="custom-file-label text-truncate" for="customFile">Seleccionar Imagen...</label>
             </div>
             <div class="form-group col-md-12 text-center mt-4">
-                <button type="reset" value="reset" class="btn btn-outline-secondary">Vaciar</button>
+                <button type="button" onclick="location.href='listaVehiculos.jsp'" class="btn btn-outline-secondary">Volver</button>
                 <button type="submit" class="btn btn-outline-success">Registrar vehículo</button>
             </div>
         </form>

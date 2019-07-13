@@ -40,25 +40,33 @@ public class VentaServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             String action = request.getParameter("action");
+            String placa = request.getParameter("placa");
+            String linea = request.getParameter("linea");
+            String modelo = request.getParameter("modelo");
+
             String url = "index.jsp";
             Venta venta;
-            
-            if(action != null) switch(action){ 
-                case "registrar":
-                    try {
-                        
-                    } catch (Exception e) {
-                        
-                    }
-                    break;
-                case "toRegistrar" :
-                    url = "registrarVenta.jsp";                   
-                    break;
-                case "listar":
-                    List<Venta> findAll = ventaFacade.findAll();
-                    request.getSession().setAttribute("venta", findAll);
-                    url = "listaVentas.jsp";
-                    break;
+
+            if (action != null) {
+                switch (action) {
+                    case "registrar":
+                        try {
+
+                        } catch (Exception e) {
+
+                        }
+                        break;
+                    case "toRegistrar":
+                        url = "registrarVenta.jsp";
+                        break;
+                    case "listar":
+                        List<Venta> findAll = ventaFacade.findAll();
+                        request.getSession().setAttribute("ventas", findAll);
+                        url = "listaVentas.jsp";
+                        break;
+                    default:
+                        break;
+                }
             }
             response.sendRedirect(url);
         }

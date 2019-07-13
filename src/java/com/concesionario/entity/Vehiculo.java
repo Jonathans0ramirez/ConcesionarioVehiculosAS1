@@ -5,7 +5,12 @@
  */
 package com.concesionario.entity;
 
+import java.io.BufferedInputStream;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
+import java.net.URLConnection;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -19,6 +24,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.DatatypeConverter;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -150,6 +156,19 @@ public class Vehiculo implements Serializable {
     @Override
     public String toString() {
         return "com.concesionario.entity.Vehiculo[ placa=" + placa + " ]";
+    }
+    
+    public String getFotoBase64() throws IOException {
+        if (foto != null) {
+            String mimeType;
+            try (InputStream is = new BufferedInputStream(new ByteArrayInputStream(foto))) {
+                mimeType = URLConnection.guessContentTypeFromStream(is);
+            }
+            String base64 = DatatypeConverter.printBase64Binary(foto);
+            System.out.println("data:" + mimeType + ";base64," + base64);
+            return "data:" + mimeType + ";base64," + base64;
+        }
+        return "";
     }
     
 }

@@ -42,19 +42,19 @@
         <form action="UsuarioServlet?action=registrar" method="post" class="border p-3 needs-validation form">
             <legend class="text-center icon"><i class="fas fa-users-cog"></i></legend>
             <div class="form-group col-md-12">
-                <input type="text" class="form-control" id="name" placeholder="Nombre">
+                <input type="text" class="form-control" name="name" placeholder="Nombre" required>
             </div>
             <div class="form-group col-md-12">
-                <input type="text" class="form-control" id="user" placeholder="Usuario">
+                <input type="text" class="form-control" name="user" placeholder="Usuario" required>
             </div>
             <div class="form-group col-md-12">
-                <input type="password" class="form-control" id="password" placeholder="Contraseña">
+                <input type="password" class="form-control" name="password" placeholder="Contraseña" required>
             </div>
             <div class="form-group col-md-12">
-                <input type="password" class="form-control" id="conPassword" placeholder="Confirmar Contraseña">
+                <input type="password" class="form-control" name="conPassword" placeholder="Confirmar Contraseña" required>
             </div>
             <div class="form-group col-md-12 text-center">
-                <button type="reset" value="reset" class="btn btn-outline-secondary">Vaciar</button>
+                <button type="button" onclick="location.href='listaAdmins.jsp'" class="btn btn-outline-secondary">Volver</button>
                 <button type="submit" class="btn btn-outline-success">Registrar</button>
             </div>
         </form>

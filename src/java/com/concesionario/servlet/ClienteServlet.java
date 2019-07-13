@@ -46,22 +46,17 @@ public class ClienteServlet extends HttpServlet {
             if (action != null) {
                 switch (action) {
                     case "registrar":
-                        try {
-                            String contraseña = request.getParameter("password");
-                            if (contraseña.equals(request.getParameter("conPassword"))) {
-                                cliente = new Cliente();
-                                cliente.setCedula(request.getParameter("cedula"));
-                                cliente.setNombre(request.getParameter("nombre"));
-                                cliente.setTelefono(request.getParameter("telefono"));
-                                cliente.setCorreo(request.getParameter("correo"));
-                                cliente.setDireccion(request.getParameter("direccion"));
-                                clienteFacade.create(cliente);
-                                url = "index.jsp?exito=2";
-                            } else {
-                                url = "index.jsp=error=2";
-                            }
+                        try {                            
+                            cliente = new Cliente();
+                            cliente.setCedula(request.getParameter("cedula"));
+                            cliente.setNombre(request.getParameter("nombre"));
+                            cliente.setTelefono(request.getParameter("telefono"));
+                            cliente.setCorreo(request.getParameter("correo"));
+                            cliente.setDireccion(request.getParameter("direccion"));
+                            clienteFacade.create(cliente);
+                            url = "index.jsp?exitoRegistrar=2";
                         } catch (Exception e) {
-                            url = "index.jsp=error=2";
+                            url = "index.jsp=errorRegistrar=2";
                         }
                         break;
                     case "toRegistrar":
@@ -69,8 +64,20 @@ public class ClienteServlet extends HttpServlet {
                         break;
                     case "listar":
                         List<Cliente> findAll = clienteFacade.findAll();
-                        request.getSession().setAttribute("cliente", findAll);
+                        request.getSession().setAttribute("clientes", findAll);
                         url = "listaClientes.jsp";
+                        break;
+                    case "eliminar":
+                        try {
+                            cliente = clienteFacade.find(request.getParameter("cedula"));
+                            clienteFacade.remove(cliente);
+                            url = "index.jsp?exitoEliminar=2";
+
+                        } catch (Exception e) {
+                            url = "index.jsp?errorEliminar=2";
+                        }
+                        break;
+                    default:
                         break;
                 }
             }

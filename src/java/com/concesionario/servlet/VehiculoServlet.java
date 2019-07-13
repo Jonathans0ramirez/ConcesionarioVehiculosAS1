@@ -8,6 +8,7 @@ package com.concesionario.servlet;
 import com.concesionario.ejb.VehiculoFacadeLocal;
 import com.concesionario.entity.Vehiculo;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +17,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 /**
  *
@@ -42,7 +44,7 @@ public class VehiculoServlet extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             String action = request.getParameter("action");
             String url = "index.jsp";
-            Vehiculo v;
+            Vehiculo vehiculo;
 
             if (action != null) {
                 switch (action) {
@@ -50,13 +52,13 @@ public class VehiculoServlet extends HttpServlet {
                     case "buscarPorMatricula":
                         try {
                             String param = request.getParameter("matricula");
-                            v = vehiculoFacade.find(Integer.parseInt(param));
+                            vehiculo = vehiculoFacade.find(Integer.parseInt(param));
 
-                            if (v == null) {
+                            if (vehiculo == null) {
                                 url = "listarVehiculos.jsp?filtered=3";
                             } else {
                                 List<Vehiculo> lista = new ArrayList<>();
-                                lista.add(v);
+                                lista.add(vehiculo);
 
                                 request.getSession().setAttribute("vehiculo", lista);
                                 url = "listaVehiculos.jsp?filtered=1";
@@ -70,7 +72,40 @@ public class VehiculoServlet extends HttpServlet {
                         request.getSession().setAttribute("vehiculos", findAll);
                         url = "listaVehiculos.jsp";
                         break;
+                    case "registrar":
+                        try {                            
+                            vehiculo = new Vehiculo();
+                            vehiculo.setPlaca(request.getParameter("placa"));
+                            vehiculo.setLinea(request.getParameter("linea"));
+                            vehiculo.setModelo(request.getParameter("modelo"));                            
+                            vehiculo.setPrecio(Integer.parseInt(request.getParameter("precio")));
+                    /*TROZO INSERTAR FOTO*/        
+                            Part part = request.getPart("foto");                            
+                            System.out.println("oli");                
+                            if (part != null && part.getSize() != 0) {
+                                byte[] buffer;
+                                try (InputStream is = part.getInputStream()) {
+                                    buffer = new byte[is.available()];
+                                    is.read(buffer);
+                                }
+                                vehiculo.setFoto(buffer);
+                            } else {
+                                vehiculo.setFoto(null);
+                            }                                                                
+                            vehiculoFacade.create(vehiculo);
+                            url = "index.jsp?exitoRegistrar=3";
+                        } catch (Exception e) {
+                            url = "index.jsp=errorRegistrar=3";
+                        }
+                        break;
                     case "toVenta":
+                        String placa = request.getParameter("placa");
+                        String linea = request.getParameter("linea");
+                        String modelo = request.getParameter("modelo");
+                        request.getSession().setAttribute("placaLbl", placa);
+                        request.getSession().setAttribute("lineaLbl", linea);
+                        request.getSession().setAttribute("modeloLbl", modelo);
+
                         url = "registrarVenta.jsp";
                         break;
                     case "toRegistrar":
@@ -78,17 +113,23 @@ public class VehiculoServlet extends HttpServlet {
                         break;
 
                     case "eliminar":
-                        try {
-                            String id = request.getParameter("id");
-                            v = vehiculoFacade.find(Integer.parseInt(id));
-                            vehiculoFacade.remove(v);
+                        try {                            
+                            vehiculo = vehiculoFacade.find(request.getParameter("placa"));
+                            vehiculoFacade.remove(vehiculo);
+                            url = "index.jsp?exitoEliminar=3";
 
                         } catch (Exception e) {
+                            url = "index.jsp?errorEliminar=3";
                         }
+                        break;
+                    default:
+                        break;
                 }
             }
             response.sendRedirect(url);
         }
+        
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

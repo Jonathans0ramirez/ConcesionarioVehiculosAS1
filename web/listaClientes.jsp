@@ -46,7 +46,7 @@
                 <div class="row">
                     <div class="col-md-4"><h3>Lista <b>Clientes</b></h3></div>
                     <div class="col-md-4">
-                        <button type="button" class="btn btn-info add-new" href="ClienteServlet?action=toRegistrar" style="background-color: #4CAF50"><i class="fa fa-plus"></i> Añadir nuevo</button>
+                        <button type="button" class="btn btn-info add-new" onclick="location.href='ClienteServlet?action=toRegistrar'" style="background-color: #4CAF50"><i class="fa fa-plus"></i> Añadir nuevo</button>
                     </div>
                     <div class="col-md-4">
                         <form class="form-inline">
@@ -70,26 +70,26 @@
                 <tbody  id="cuerpoTabla">
                 <c:if test="${param.filtered == 1}">
                     <c:forEach var = "cliente" varStatus="status" items="${cliente}">
-                        <td<c:out value="${cliente.cedula}"/>
-                        <td<c:out value="${cliente.nombre}"/>
-                        <td<c:out value="${cliente.telefono}"/>
-                        <td<c:out value="${cliente.correo}"/>                        
-                        <td<c:out value="${cliente.direccion}"/>                         
+                        <td><c:out value="${cliente.cedula}"/></td>
+                        <td><c:out value="${cliente.nombre}"/></td>
+                        <td><c:out value="${cliente.telefono}"/></td>
+                        <td><c:out value="${cliente.correo}"/></td>                   
+                        <td><c:out value="${cliente.direccion}"/></td>                         
                         <td>                            
-                            <a class="delete" title="Delete" data-toggle="tooltip" href="ClienteServlet?action=eliminar&id=${cliente.cedula}"><i class="fas fa-trash"></i></a>
+                            <a class="delete" title="Delete" data-toggle="tooltip" href="ClienteServlet?action=eliminar&cedula=${cliente.cedula}"><i class="fas fa-trash"></i></a>
                         </td>
                     </c:forEach>
                 </c:if> 
                 <c:if test="${param.filtered == 2 || param.filtered == null}">
                     <c:forEach var = "cliente" varStatus="status" items="${clientes}">
                         <tr>
-                            <td<c:out value="${cliente.cedula}"/>
-                            <td<c:out value="${cliente.nombre}"/>
-                            <td<c:out value="${cliente.telefono}"/>
-                            <td<c:out value="${cliente.correo}"/>                        
-                            <td<c:out value="${cliente.direccion}"/>                         
+                            <td><c:out value="${cliente.cedula}"/></td>
+                            <td><c:out value="${cliente.nombre}"/></td>
+                            <td><c:out value="${cliente.telefono}"/></td>
+                            <td><c:out value="${cliente.correo}"/></td>
+                            <td><c:out value="${cliente.direccion}"/></td>                       
                             <td>                            
-                                <a class="delete" title="Delete" data-toggle="tooltip" href="ClienteServlet?action=eliminar&id=${cliente.cedula}"><i class="fas fa-trash"></i></a>
+                                <a class="delete" title="Delete" data-toggle="tooltip" href="ClienteServlet?action=eliminar&cedula=${cliente.cedula}"><i class="fas fa-trash"></i></a>
                             </td>
                         </tr>
                     </c:forEach>

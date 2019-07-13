@@ -44,9 +44,9 @@
         <div class="table-wrapper table-responsive-md">
             <div class="table-title">
                 <div class="row">
-                    <div class="col-md-4"><h3>Lista <b>Clientes</b></h3></div>
+                    <div class="col-md-4"><h3>Lista <b>Administradores</b></h3></div>
                     <div class="col-md-4">
-                        <button type="button" class="btn btn-info add-new" href="ClienteServlet?action=toRegistrar" style="background-color: #4CAF50"><i class="fa fa-plus"></i> Añadir nuevo</button>
+                        <button type="button" class="btn btn-info add-new" onclick="location.href='UsuarioServlet?action=toRegistrar'" style="background-color: #4CAF50"><i class="fa fa-plus"></i> Añadir nuevo</button>
                     </div>
                     <div class="col-md-4">
                         <form class="form-inline">
@@ -59,37 +59,34 @@
             <table class="table table-bordered text-center mt-2">
                 <thead>
                     <tr>
-                        <th>Cédula</th>
+                        <th>Id</th>
                         <th>Nombre</th>
-                        <th>Télefono</th>
-                        <th>Correo</th>
-                        <th>Dirección</th>
+                        <th>Usuario</th>
+                        <th>Contraseña</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>                              
                 <tbody  id="cuerpoTabla">
                 <c:if test="${param.filtered == 1}">
-                    <c:forEach var = "cliente" varStatus="status" items="${cliente}">
-                        <td<c:out value="${cliente.cedula}"/>
-                        <td<c:out value="${cliente.nombre}"/>
-                        <td<c:out value="${cliente.telefono}"/>
-                        <td<c:out value="${cliente.correo}"/>                        
-                        <td<c:out value="${cliente.direccion}"/>                         
+                    <c:forEach var = "admin" varStatus="status" items="${admin}">
+                        <td><c:out value="${admin.id}"/></td>
+                        <td><c:out value="${admin.nombre}"/></td>
+                        <td><c:out value="${admin.usuario}"/></td>                                              
+                        <td><c:out value="${admin.contrasena}"/></td>                         
                         <td>                            
-                            <a class="delete" title="Delete" data-toggle="tooltip" href="ClienteServlet?action=eliminar&id=${vehiculo.placa}"><i class="fas fa-trash"></i></a>
+                            <a class="delete" title="Delete" data-toggle="tooltip" href="UsuarioServlet?action=eliminar&id=${admin.id}"><i class="fas fa-trash"></i></a>
                         </td>
                     </c:forEach>
                 </c:if> 
                 <c:if test="${param.filtered == 2 || param.filtered == null}">
-                    <c:forEach var = "cliente" varStatus="status" items="${clientes}">
+                    <c:forEach var = "admin" varStatus="status" items="${admins}">
                         <tr>
-                            <td<c:out value="${cliente.cedula}"/>
-                            <td<c:out value="${cliente.nombre}"/>
-                            <td<c:out value="${cliente.telefono}"/>
-                            <td<c:out value="${cliente.correo}"/>                        
-                            <td<c:out value="${cliente.direccion}"/>                         
+                            <td><c:out value="${admin.id}"/></td>
+                            <td><c:out value="${admin.nombre}"/></td>
+                            <td><c:out value="${admin.usuario}"/></td>                                              
+                            <td><c:out value="${admin.contrasena}"/></td>                        
                             <td>                            
-                                <a class="delete" title="Delete" data-toggle="tooltip" href="ClienteServlet?action=eliminar&id=${vehiculo.placa}"><i class="fas fa-trash"></i></a>
+                                <a class="delete" title="Delete" data-toggle="tooltip" href="UsuarioServlet?action=eliminar&id=${admin.id}"><i class="fas fa-trash"></i></a>
                             </td>
                         </tr>
                     </c:forEach>

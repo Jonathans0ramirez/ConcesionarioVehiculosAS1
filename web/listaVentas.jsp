@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -47,23 +48,37 @@
             <table class="table table-bordered text-center mt-2">
                 <thead>
                     <tr>
-                        <th>Nombre Cliente</th>
-                        <th>Cédula</th>
-                        <th>Linea</th>
-                        <th>Modelo</th>
-                        <th>Imagen</th>
+                        <th>Id</th>                   
                         <th>Placa</th>
+                        <th>Cédula del comprador</th>
                     </tr>
                 </thead>
                 <tbody  id="cuerpoTabla">
-                    <tr>
-                        <td>Juan Alvarez</td>
-                        <td>42788767</td>
-                        <td>Spark</td>
-                        <td>2016</td>
-                        <td><a title="ver imagen" href="#" ><i class="fas fa-image"></i></a></td>
-                        <td>GBC597</td>
-                    </tr>
+                    <c:if test="${param.filtered == 1}">
+                    <c:forEach var = "venta" varStatus="status" items="${venta}">
+                        <td><c:out value="${venta.id}"/></td>
+                        <td><c:out value="${venta.placa}"/></td>
+                        <td><c:out value="${venta.cedula}"/></td>                                               
+                        <td>                            
+                            <a class="delete" title="Delete" data-toggle="tooltip" href="VentaServlet?action=eliminar&id=${venta.id}"><i class="fas fa-trash"></i></a>
+                        </td>
+                    </c:forEach>
+                </c:if> 
+                <c:if test="${param.filtered == 2 || param.filtered == null}">
+                    <c:forEach var = "venta" varStatus="status" items="${ventas}">
+                        <tr>
+                            <td><c:out value="${venta.id}"/></td>
+                            <td><c:out value="${venta.placa}"/></td>
+                            <td><c:out value="${venta.cedula}"/></td>                                                     
+                            <td>
+                                <a class="delete" title="Delete" data-toggle="tooltip" href="VentaServlet?action=eliminar&id=${venta.id}"><i class="fas fa-trash"></i></a>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </c:if> 
+                <c:if test="${param.filtered == 3}">
+                    <center><h1>No se encontraron registros</h1></center>
+                </c:if>  
                 </tbody>
             </table>
         </div>
