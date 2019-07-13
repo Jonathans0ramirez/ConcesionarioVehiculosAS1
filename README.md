@@ -1,6 +1,6 @@
 # ConcesionarioVehiculosAS1
 
-#Script 
+# Script 
 
   CREATE DATABASE concesionariodb;
   
