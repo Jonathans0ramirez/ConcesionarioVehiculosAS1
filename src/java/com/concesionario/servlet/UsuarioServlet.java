@@ -40,7 +40,7 @@ public class UsuarioServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             String action = request.getParameter("action");
-            String url = "index.jsp";
+            String url = "principal.jsp";
             Usuario usuario;
 
             if (action != null) {
@@ -53,12 +53,16 @@ public class UsuarioServlet extends HttpServlet {
 
                             if (checkLogin) {
                                 request.getSession().setAttribute("login", u);
-                                url = "iniciarSesion.jsp?exito=1";
+                                url = "principal.jsp";
                             } else {
                                 url = "iniciarSesion.jsp?error=1";
                             }
                         } catch (Exception e) {
                         }
+                        break;
+                    case "desconectar":                        
+                            request.getSession().removeAttribute("login");
+                            url = "index.jsp";
                         break;
                     case "registrar":
                         try {
@@ -70,12 +74,12 @@ public class UsuarioServlet extends HttpServlet {
                                 usuario.setUsuario(request.getParameter("user"));
                                 usuario.setContrasena(contraseña);
                                 usuarioFacade.create(usuario);
-                                url = "index.jsp?exitoRegistrar=1";
+                                url = "inciarSesion.jsp?exito=1";
                             } else {
-                                url = "index.jsp=errorRegistrar=1";
+                                url = "registrarAdmin.jsp=error=1";
                             }
                         } catch (Exception e) {
-                            url = "index.jsp=errorRegistrar=1";
+                            url = "principal.jsp=errorRegistrar=1";
                         }
                         break;
                     case "listar":
@@ -87,7 +91,7 @@ public class UsuarioServlet extends HttpServlet {
                         try {
                             url = "registrarAdmin.jsp";
                         } catch (Exception e) {
-                            url = "index.jsp=error=2";
+                            url = "principal.jsp=error=2";
                         }
                         break;
                     case "eliminar":
@@ -95,10 +99,10 @@ public class UsuarioServlet extends HttpServlet {
                             String id = request.getParameter("id");
                             usuario = usuarioFacade.find(Integer.parseInt(id));
                             usuarioFacade.remove(usuario);
-                            url = "index.jsp?exitoEliminar=1";
+                            url = "principal.jsp?exitoEliminar=1";
 
                         } catch (Exception e) {
-                            url = "index.jsp?errorEliminar=1";
+                            url = "principal.jsp?errorEliminar=1";
                         }
                         break;
                     default:

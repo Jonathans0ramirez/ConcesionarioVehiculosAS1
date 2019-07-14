@@ -43,7 +43,7 @@ public class VehiculoServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             String action = request.getParameter("action");
-            String url = "index.jsp";
+            String url = "principal.jsp";
             Vehiculo vehiculo;
 
             if (action != null) {
@@ -93,9 +93,9 @@ public class VehiculoServlet extends HttpServlet {
                                 vehiculo.setFoto(null);
                             }                                                                
                             vehiculoFacade.create(vehiculo);
-                            url = "index.jsp?exitoRegistrar=3";
+                            url = "principal.jsp?exitoRegistrar=3";
                         } catch (Exception e) {
-                            url = "index.jsp=errorRegistrar=3";
+                            url = "principal.jsp=errorRegistrar=3";
                         }
                         break;
                     case "toVenta":
@@ -116,10 +116,10 @@ public class VehiculoServlet extends HttpServlet {
                         try {                            
                             vehiculo = vehiculoFacade.find(request.getParameter("placa"));
                             vehiculoFacade.remove(vehiculo);
-                            url = "index.jsp?exitoEliminar=3";
+                            url = "principal.jsp?exitoEliminar=3";
 
                         } catch (Exception e) {
-                            url = "index.jsp?errorEliminar=3";
+                            url = "principal.jsp?errorEliminar=3";
                         }
                         break;
                     default:

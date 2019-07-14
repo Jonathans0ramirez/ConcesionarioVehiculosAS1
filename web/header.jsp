@@ -5,14 +5,16 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="index.jsp"><b>MARCA</b> CONCESIONARIO</a>
+        <a class="navbar-brand" href="principal.jsp"><b>MARCA</b> CONCESIONARIO</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarText">
+        <c:if test="${not empty login}">
             <ul class="navbar-nav mr-auto">                    
 
                 <li class="nav-item dropdown">
@@ -32,12 +34,16 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="VehiculoServlet?action=toRegistrar">Registrar Vehículo</a>
                         <a class="dropdown-item" href="ClienteServlet?action=toRegistrar">Registrar Cliente</a>
-                        <a class="dropdown-item" href="UsuarioServlet?action=toRegistrar">Registrar Administrador</a>
                     </div>
                 </li>
             </ul>
-
-            <a href="UsuarioServlet?action=desconectar" class="nav-link" id="Conectado" style="color: #9A9DA0">Desconectarse</a>
+        </c:if>    
+            <c:if test="${not empty login}">
+                <a href="UsuarioServlet?action=desconectar" class="nav-link" id="Conectado" style="color: #9A9DA0">Desconectarse</a>
+            </c:if>
+            <c:if test="${empty login}">
+                <a href="principal.jsp" class="nav-link" id="Conectado" style="color: #9A9DA0">Iniciar sesión / Registrar</a>
+            </c:if>    
         </div>
     </nav>
 </header>

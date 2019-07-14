@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -18,7 +19,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <title>Concesionario - Registrar Admin</title>
+    <title>Concesionario - Registrar Administrador</title>
     <style>
         .abs-center {
             display: flex;
@@ -54,12 +55,15 @@
                 <input type="password" class="form-control" name="conPassword" placeholder="Confirmar Contraseña" required>
             </div>
             <div class="form-group col-md-12 text-center">
-                <button type="button" onclick="location.href='listaAdmins.jsp'" class="btn btn-outline-secondary">Volver</button>
+                <button type="button" onclick="location.href='index.jsp'" class="btn btn-outline-secondary">Volver</button>
                 <button type="submit" class="btn btn-outline-success">Registrar</button>
             </div>
         </form>
     </div>
 </div>
+<c:if test="${(param.error==1)}">
+    <center><h1>Error al registrarse.</h1></center>
+</c:if>  
 
     
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

@@ -18,62 +18,11 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <title>Concesionario - Lista de vehiculos</title>
+    <title>Concesionario - Iniciar Sesíon</title>
     </head>
     <body>
         <!--BARRA DE NAVEGACION-->
-      <jsp:include page="header.jsp"></jsp:include>
-      
-      <div class=""><h1><center><b>PAGINA PARA GESTIÓN DE VENTAS DEL CONCESIONARIO</b></center></h1></div>
-      
-      <c:if test="${param.errorRegistrar == 1}">
-          <center><font color="red">Error al registrar el Administrador. Inténtelo de nuevo</font></center>
-      </c:if>
-      <c:if test="${param.errorEliminar == 1}">
-          <center><font color="red">Error al eliminar el Administrador. Inténtelo de nuevo</font></center>
-      </c:if>      
-        <c:if test="${param.errorRegistrar == 2}">
-          <center><font color="red">Error al registrar el Cliente. Inténtelo de nuevo</font></center>
-      </c:if>
-      <c:if test="${param.errorEliminar == 2}">
-          <center><font color="red">Error al eliminar el Cliente. Inténtelo de nuevo</font></center>
-      </c:if>
-      <c:if test="${param.errorRegistrar == 3}">
-          <center><font color="red">Error al registrar el Vehículo. Inténtelo de nuevo</font></center>
-      </c:if> 
-      <c:if test="${param.errorEliminar == 3}">
-          <center><font color="red">Error al eliminar el Vehículo. Inténtelo de nuevo</font></center>
-      </c:if>
-      <c:if test="${param.errorRegistrar == 4}">
-          <center><font color="red">Error al registrar la Venta. Inténtelo de nuevo</font></center>
-      </c:if> 
-      <c:if test="${param.errorEliminar == 4}">
-          <center><font color="red">Error al eliminar la Venta. Inténtelo de nuevo</font></center>
-      </c:if>
-      <c:if test="${param.exitoRegistrar == 1}">
-          <center><font color="red">Se registró correctamente el administrador</font></center>
-      </c:if>
-      <c:if test="${param.exitoEliminar == 1}">
-          <center><font color="red">Se eliminó correctamente el administrador</font></center>
-      </c:if>
-      <c:if test="${param.exitoRegistrar == 2}">
-          <center><font color="red">Se registró correctamente el Cliente</font></center>
-      </c:if>
-      <c:if test="${param.exitoEliminar == 2}">
-          <center><font color="red">Se eliminó correctamente el Cliente</font></center>
-      </c:if>
-      <c:if test="${param.exitoRegistrar == 3}">
-          <center><font color="red">Se registró correctamente el Vehículo</font></center>
-      </c:if> 
-      <c:if test="${param.exitoEliminar == 3}">
-          <center><font color="red">Se eliminó correctamente el Vehículo</font></center>
-      </c:if>
-      <c:if test="${param.exitoRegistrar == 4}">
-          <center><font color="red">Se registró correctamente la Venta</font></center>
-      </c:if> 
-      <c:if test="${param.exitoEliminar == 4}">
-          <center><font color="red">Se eliminó correctamente la Venta</font></center>
-      </c:if>
+      <jsp:include page="iniciarSesion.jsp"></jsp:include>
     </body>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

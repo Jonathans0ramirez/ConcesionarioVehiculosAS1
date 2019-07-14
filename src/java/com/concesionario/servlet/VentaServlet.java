@@ -5,7 +5,11 @@
  */
 package com.concesionario.servlet;
 
+import com.concesionario.ejb.ClienteFacadeLocal;
+import com.concesionario.ejb.VehiculoFacadeLocal;
 import com.concesionario.ejb.VentaFacadeLocal;
+import com.concesionario.entity.Cliente;
+import com.concesionario.entity.Vehiculo;
 import com.concesionario.entity.Venta;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -21,6 +25,12 @@ import javax.servlet.http.HttpServletResponse;
  * @author jonathans.ramirez
  */
 public class VentaServlet extends HttpServlet {
+
+    @EJB
+    private VehiculoFacadeLocal vehiculoFacade;
+
+    @EJB
+    private ClienteFacadeLocal clienteFacade;
 
     @EJB
     private VentaFacadeLocal ventaFacade;
@@ -41,17 +51,30 @@ public class VentaServlet extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             String action = request.getParameter("action");
             String placa = request.getParameter("placa");
-            String linea = request.getParameter("linea");
-            String modelo = request.getParameter("modelo");
 
-            String url = "index.jsp";
+            String url = "principal.jsp";
             Venta venta;
 
             if (action != null) {
                 switch (action) {
                     case "registrar":
                         try {
-
+                            String cedula = request.getParameter("cedula");
+                            Cliente cliente = clienteFacade.find(cedula);
+                            Vehiculo vehiculo = vehiculoFacade.find(placa);
+                            
+                            boolean checkCedula = clienteFacade.checkCliente(cedula);
+                            
+                            if(checkCedula){
+                                venta = new Venta();
+                                venta.setId(null);
+                                venta.setCedula(cliente);
+                                venta.setPlaca(vehiculo);
+                                ventaFacade.create(venta);
+                                url = "principal.jsp";
+                            } else {
+                                url = "registrarCliente.jsp";
+                            }
                         } catch (Exception e) {
 
                         }

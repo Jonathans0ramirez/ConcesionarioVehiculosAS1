@@ -40,7 +40,7 @@ public class ClienteServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             String action = request.getParameter("action");
-            String url = "index.jsp";
+            String url = "principal.jsp";
             Cliente cliente;
             
             if (action != null) {
@@ -54,9 +54,9 @@ public class ClienteServlet extends HttpServlet {
                             cliente.setCorreo(request.getParameter("correo"));
                             cliente.setDireccion(request.getParameter("direccion"));
                             clienteFacade.create(cliente);
-                            url = "index.jsp?exitoRegistrar=2";
+                            url = "principal.jsp?exitoRegistrar=2";
                         } catch (Exception e) {
-                            url = "index.jsp=errorRegistrar=2";
+                            url = "principal.jsp=errorRegistrar=2";
                         }
                         break;
                     case "toRegistrar":
@@ -71,10 +71,10 @@ public class ClienteServlet extends HttpServlet {
                         try {
                             cliente = clienteFacade.find(request.getParameter("cedula"));
                             clienteFacade.remove(cliente);
-                            url = "index.jsp?exitoEliminar=2";
+                            url = "principal.jsp?exitoEliminar=2";
 
                         } catch (Exception e) {
-                            url = "index.jsp?errorEliminar=2";
+                            url = "principal.jsp?errorEliminar=2";
                         }
                         break;
                     default:

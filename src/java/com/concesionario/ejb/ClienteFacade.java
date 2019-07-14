@@ -9,6 +9,7 @@ import com.concesionario.entity.Cliente;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +28,14 @@ public class ClienteFacade extends AbstractFacade<Cliente> implements ClienteFac
 
     public ClienteFacade() {
         super(Cliente.class);
+    }
+    
+    @Override
+    public boolean checkCliente(String cedula) {
+        Query query = em.createQuery("select a from Cliente a where a.cedula=:cedula");
+        query.setParameter("cedula", cedula);
+        
+        return query.getResultList().size() > 0;
     }
     
 }
