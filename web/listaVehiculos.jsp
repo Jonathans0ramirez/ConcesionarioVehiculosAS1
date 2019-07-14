@@ -51,7 +51,7 @@
                     <div class="col-md-4">
                         <form class="form-inline">
                             <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
-                            <button class="btn btn-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+                            <button class="btn btn-success my-2 my-sm-0" type="button" onclick="location.href='VehiculoServlet?action=buscarPorPlaca'"><i class="fas fa-search"></i></button>
                         </form>
                     </div>
                 </div>

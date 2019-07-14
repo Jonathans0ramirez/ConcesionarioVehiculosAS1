@@ -25,6 +25,10 @@ public interface VehiculoFacadeLocal {
     Vehiculo find(Object id);
 
     List<Vehiculo> findAll();
+    
+    Vehiculo findAvailable(String placa);
+    
+    List<Vehiculo> findAllAvailable();
 
     List<Vehiculo> findRange(int[] range);
 

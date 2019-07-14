@@ -49,10 +49,9 @@ public class VehiculoServlet extends HttpServlet {
             if (action != null) {
                 switch (action) {
 
-                    case "buscarPorMatricula":
+                    case "buscarPorPlaca":
                         try {
-                            String param = request.getParameter("matricula");
-                            vehiculo = vehiculoFacade.find(Integer.parseInt(param));
+                            vehiculo = vehiculoFacade.findAvailable(request.getParameter("placa"));
 
                             if (vehiculo == null) {
                                 url = "listarVehiculos.jsp?filtered=3";
@@ -68,7 +67,7 @@ public class VehiculoServlet extends HttpServlet {
                         }
                         break;
                     case "listar":
-                        List<Vehiculo> findAll = vehiculoFacade.findAll();
+                        List<Vehiculo> findAll = vehiculoFacade.findAllAvailable();
                         request.getSession().setAttribute("vehiculos", findAll);
                         url = "listaVehiculos.jsp";
                         break;
