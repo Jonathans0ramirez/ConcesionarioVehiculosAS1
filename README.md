@@ -67,36 +67,3 @@
   (NULL, 'FER736', '1175848932'),
   (NULL, '1254 ABG', '946385093');
   
-  #Verificar los datos en la tabla
-  SELECT * FROM Usuario;
-  SELECT * FROM Cliente;
-  SELECT * FROM Vehiculo;
-  SELECT * FROM Venta;
-  
-  
-  #Consulta de vehículos para la venta
-  SELECT a.*
-  FROM Vehiculo a
-  LEFT JOIN Venta b ON a.Placa=b.Placa
-  WHERE b.placa IS NULL
-  GROUP BY a.Placa
-  ORDER BY a.Linea, a.Modelo DESC;
-  
-  
-  #Consulta con el historial de ventas del concesionario
-  SELECT c.Nombre, c.Cedula, a.Linea, a.Modelo, a.Placa
-  FROM Vehiculo a
-  INNER JOIN Venta b ON a.Placa=b.Placa
-  INNER JOIN Cliente c ON b.Cedula=c.Cedula
-  GROUP BY a.Placa
-  ORDER BY c.Nombre, a.Modelo DESC;
-  
-  
-  #Consulta con los vehículos pertenecientes a un cliente
-  SELECT c.Nombre, c.Cedula, a.Linea, a.Modelo, a.Placa
-  FROM Vehiculo a
-  INNER JOIN Venta b ON a.Placa=b.Placa
-  INNER JOIN Cliente c ON b.Cedula=c.Cedula
-  WHERE c.Cedula = 1175848932
-  GROUP BY a.Placa
-  ORDER BY c.Nombre, a.Modelo DESC;
