@@ -78,7 +78,7 @@ public class VehiculoServlet extends HttpServlet {
                             vehiculo.setLinea(request.getParameter("linea"));
                             vehiculo.setModelo(request.getParameter("modelo"));                            
                             vehiculo.setPrecio(Integer.parseInt(request.getParameter("precio")));
-                    /*TROZO INSERTAR FOTO*/        
+                    /*TROZO INSERTAR FOTO        
                             Part part = request.getPart("foto");                            
                             System.out.println("oli");                
                             if (part != null && part.getSize() != 0) {
@@ -90,7 +90,7 @@ public class VehiculoServlet extends HttpServlet {
                                 vehiculo.setFoto(buffer);
                             } else {
                                 vehiculo.setFoto(null);
-                            }                                                                
+                            }*/                                                           
                             vehiculoFacade.create(vehiculo);
                             url = "principal.jsp?exitoRegistrar=3";
                         } catch (Exception e) {

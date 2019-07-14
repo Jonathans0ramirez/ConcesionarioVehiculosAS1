@@ -57,8 +57,8 @@
                     <c:if test="${param.filtered == 1}">
                     <c:forEach var = "venta" varStatus="status" items="${venta}">
                         <td><c:out value="${venta.id}"/></td>
-                        <td><c:out value="${venta.placa}"/></td>
-                        <td><c:out value="${venta.cedula}"/></td>                                               
+                        <td><c:out value="${venta.vehiculo.placa}"/></td>
+                        <td><c:out value="${venta.cliente.cedula}"/></td>                                               
                         <td>                            
                             <a class="delete" title="Delete" data-toggle="tooltip" href="VentaServlet?action=eliminar&id=${venta.id}"><i class="fas fa-trash"></i></a>
                         </td>
@@ -68,8 +68,8 @@
                     <c:forEach var = "venta" varStatus="status" items="${ventas}">
                         <tr>
                             <td><c:out value="${venta.id}"/></td>
-                            <td><c:out value="${venta.placa}"/></td>
-                            <td><c:out value="${venta.cedula}"/></td>                                                     
+                            <td><c:out value="${venta.vehiculo.placa}"/></td>
+                            <td><c:out value="${venta.cliente.cedula}"/></td>                                                     
                             <td>
                                 <a class="delete" title="Delete" data-toggle="tooltip" href="VentaServlet?action=eliminar&id=${venta.id}"><i class="fas fa-trash"></i></a>
                             </td>

@@ -87,6 +87,16 @@ public class VentaServlet extends HttpServlet {
                         request.getSession().setAttribute("ventas", findAll);
                         url = "listaVentas.jsp";
                         break;
+                    case "eliminar":
+                        try {
+                            String id = request.getParameter("id");
+                            venta = ventaFacade.find(Integer.parseInt(id));
+                            ventaFacade.remove(venta);
+                            url = "principal.jsp?exitoEliminar=4";
+                        } catch (Exception e){
+                            url = "principal.jsp?errorEliminar=4";
+                        }
+                        break;
                     default:
                         break;
                 }
