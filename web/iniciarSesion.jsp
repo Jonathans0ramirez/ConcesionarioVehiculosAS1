@@ -43,10 +43,10 @@
         <form action="UsuarioServlet?action=login" method="post" class="border p-3 needs-validation form">
             <legend class="text-center icon"><i class="fas fa-users-cog"></i></legend>
             <div class="form-group col-md-12">
-                <input type="text" class="form-control" id="usuario" placeholder="Usuario">
+                <input type="text" class="form-control" id="usuario" placeholder="Usuario" name="usuario">
             </div>
             <div class="form-group col-md-12">
-                <input type="password" class="form-control" id="contrasena" placeholder="Contraseña">
+                <input type="password" class="form-control" id="contrasena" placeholder="Contraseña" name="contrasena">
             </div>
             <div class="form-group col-md-12 text-center">
                 <button type="button" onclick="location.href='UsuarioServlet?action=toRegistrar'" class="btn btn-outline-secondary">Registrarme</button>
