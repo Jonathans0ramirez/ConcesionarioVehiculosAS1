@@ -1,5 +1,7 @@
 # ConcesionarioVehiculosAS1
 
+Web application developed on Java EE for the management of a car sale. Made with academical purposes.
+
 # SQL Scripts
 
   CREATE DATABASE concesionariodb;
